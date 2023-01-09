@@ -1,0 +1,114 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using Umbraco.Cms.Core.Models.PublishedContent;
+ <section id="feature-section">
+               <div class="featured-products-section">
+                    <div class="featured-section-title">
+                         <h3>@Model.Value("featuredTitle")</h3>
+                    </div>
+                    <div class="featured-products-container">
+                         <!-- Looping through the entire list of products and seperate them based on category.
+                              Makes it smoother and I don't have to repeat myself in this case. I go with DRY this time instead.
+                              With this "<component>" I can assign  the correct component by passing the category
+                              to the ":is" prop. Then I don't need a "v-if" action to check which component to load.
+                              Also SRP, the correspondend component has only one task, to present it's product type.
+                              eg. "ShoeCardComponent" has the responsibility to present the shoes, and therefore has other properties to show,
+                              and the product that comes in to ShoeCardComponent is defined as IShoe.
+                             
+                         -->
+                          @{
+                                var featuredProduct = Model.Value<IPublishedContent>("featuredProduct");
+                                if (featuredProduct != null) 
+                            {
+                         <div
+                              class="feature-cards-contianer"
+                              
+                         >
+                              <!-- START OF SHOE CARD COMPONENT -->
+                              <div
+                                   class="featured-products-card"
+                                 
+                              >
+                               @{ 
+                                    IPublishedContent featuredProductImage = featuredProduct.Value<IPublishedContent>("productThumbnail"); 
+                                }
+                                 
+                                   <div class="card-image">
+                                    
+                                        <img src="@featuredProductImage.Url()" alt="" />
+                                        <div
+                                             class="card-side-icons"
+                                             :class="`card-side-icons-${cardId}`"
+                                        >
+                                             <div class="icon-seperator">
+                                                  <icon-component
+                                                       icon="ph:heart-straight"
+                                                       color="black"
+                                                       size="18"
+                                                       :has-notification="true"
+                                                       notification-count="1"
+                                                  />
+                                             </div>
+                                             <div class="icon-seperator">
+                                                  <icon-component
+                                                       icon="ion:git-compare-outline"
+                                                       color="black"
+                                                       size="18"
+                                                  />
+                                             </div>
+                                             <div class="icon-seperator">
+                                                  <icon-component
+                                                       icon="clarity:shopping-bag-line"
+                                                       color="black"
+                                                       size="18"
+                                                       :has-notification="true"
+                                                       notification-count="3"
+                                                  />
+                                             </div>
+                                        </div>
+
+                                        <div
+                                             class="card-button-container"
+                                             :class="`card-button-container-${cardId}`"
+                                        >
+                                             <quick-view-button-component
+                                                  button-title="Quick view"
+                                                  button-id="quickview"
+                                                  color="#ff7373"
+                                                  hover-color="#ca5d5d"
+                                                
+                                             />
+                                        </div>
+                                        <div class="card-content-background">
+                                             <h3>{{ item.category }}</h3>
+                                             <h1>{{ item.title }}</h1>
+                                             <div class="card-ratings">
+                                                  <div
+                                                       class="card-ratings-container"
+                                                       v-for="number in item.rating"
+                                                       :key="number"
+                                                  >
+                                                       <Icon
+                                                            icon="material-symbols:star"
+                                                            class="card-ratings-icon"
+                                                       />
+                                                  </div>
+                                             </div>
+                                             <div
+                                                  class="card-price"
+                                                  v-if="!item.isOnSale"
+                                             >
+                                                  ${{ item.price }}
+                                             </div>
+                                             <div class="isOnSale" v-else>
+                                                  ${{ item.salePrice }}
+                                             </div>
+                                        </div>
+                                   </div>
+                              </div>
+                              <!-- END OF SHE CARD COMPONENT -->
+                         </div>
+                         }
+                         }
+                    </div>
+               </div>
+          </section>

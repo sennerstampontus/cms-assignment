@@ -1,0 +1,36 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+<section id="contact-form-container">
+               <div class="contact-form">
+                    <h3>@Model.Value("contactTitle")</h3>
+                    <div class="input-group">
+                         <input
+                              type="text"
+                              name="Name"
+                              id="Name"
+                              placeholder="@Model.Value("namePlaceholder")"
+                         />
+                         <input
+                              type="text"
+                              name="Name"
+                              id="Name"
+                              placeholder="@Model.Value("emailPlaceholder")"
+                         />
+                    </div>
+                    <div class="input-group">
+                         <textarea
+                              name="Comments"
+                              id="Comments"
+                              cols="30"
+                              rows="10"
+                              placeholder="@Model.Value("commentPlaceholder")"
+                         ></textarea>
+                    </div>
+                    <div class="input-group">
+                         <div class="formBtn">
+                              <button type="submit" class="btn btn-theme">
+                                   @Model.Value("sendButtonName")
+                              </button>
+                         </div>
+                    </div>
+               </div>
+          </section>

@@ -1,0 +1,30 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+ <section id="header" class="homeview-background">
+               <div class="homeview-container">
+                    <div class="image-container">
+                         <img
+                              src="@Model.Value("leftHeaderImageUrl")"
+                              alt="Fashion-Model-Man-PNG-Image.png"
+                         />
+                    </div>
+
+                    <div class="head-section-middle">
+                         <h1>
+                              @Model.Value("headerTitle")<br/> @Model.Value("headerTitleRow2")
+                         </h1>
+                        
+                         <p>@Model.Value("headerSubtitle")</p>
+                         <shop-button-component
+                              button-title="Shop now"
+                              color="#ff7373"
+                              hover-color="#ca5d5d"
+                         />
+                    </div>
+                    <div class="image-container-right">
+                         <img
+                              src="@Model.Value("rightHeaderImageUrl")"
+                              alt="Fashion-Model-Man-PNG-Image.png"
+                         />
+                    </div>
+               </div>
+          </section>

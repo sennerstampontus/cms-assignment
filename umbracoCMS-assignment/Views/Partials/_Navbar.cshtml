@@ -1,0 +1,71 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using Umbraco.Cms.Core
+@using Umbraco.Cms.Core.Models.PublishedContent
+@using Umbraco.Cms.Core.Routing
+@using Umbraco.Extensions
+
+@inject IPublishedValueFallback PublishedValueFallback
+@inject IPublishedUrlProvider PublishedUrlProvider
+@*
+    This snippet displays a list of links of the pages immediately under the top-most page in the content tree.
+    This is the home page for a standard website.
+    It also highlights the current active page/section in the navigation with the CSS class "current".
+*@
+
+@{
+    var site = Model.Root();
+   
+    var selection = site.Children.Where(x => x.IsVisible(PublishedValueFallback)).OrderByDescending(x => x.CreateDate).Reverse().ToArray(); 
+}
+
+@if(site.Url() == "/"){site.Url().Replace(site.Url(), "/home/"); }
+
+<section id="navabar">
+               <div class="navbar-container">
+                    <div class="logo-container">
+                       <a class="logo-brand" href="/home/">@site.Value("setSiteName")</a> 
+                    </div>
+                
+
+                    <div class="router-links">
+                              <ul class="d-flex">
+                                
+                                   
+                                   @if (selection?.Length > 0) 
+                                   {
+                                    @foreach (var item in selection)
+                                    {
+                                       <li class="list-class"><a class="@(item.IsAncestorOrSelf(Model) ? "link-active" : null)" href="@item.Url(PublishedUrlProvider)">@item.Name</a></li>
+                                    }
+                                   }
+                                   
+                              </ul>
+                    </div>
+                    <div class="icons-container">
+                         <icon-component
+                              icon="ion:search"
+                              color="black"
+                              size="18"
+                         />
+                         <icon-component
+                              icon="ion:git-compare-outline"
+                              color="black"
+                              size="18"
+                         />
+                         <icon-component
+                              icon="ph:heart-straight"
+                              color="black"
+                              size="18"
+                              :has-notification="true"
+                              notification-count="1"
+                         />
+                         <icon-component
+                              icon="clarity:shopping-bag-line"
+                              color="black"
+                              size="18"
+                              :has-notification="true"
+                              notification-count="3"
+                         />
+                    </div>
+               </div>
+          </section>

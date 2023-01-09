@@ -1,0 +1,36 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+    var site = Model.Root();
+    var facebookVisible = site.Value("facebookVisible").ToString();
+    var instagramVisible = site.Value("instagramVisible").ToString();
+    var twitterVisible = site.Value("twitterVisible").ToString();
+    var googleVisible = site.Value("googleVisible").ToString();
+    var linkedInVisible = site.Value("linkedInVisible").ToString();
+
+
+}
+<footer id="footer">
+    <div class="container content">
+            <div>
+                <ul class="socialmedia">
+                    @if(facebookVisible == "True") {<li><a href="@site.Value("facebookUrl")"><i class="fa-brands fa-facebook-f"></i></a></li> }
+                    @if(instagramVisible == "True") {<li><a href="@site.Value("instagramUrl")"><i class="fa-brands fa-instagram"></i></a></li> }
+                @if (twitterVisible == "True")
+                {
+                    <li><a href="@site.Value("twitterUrl")"><i class="fa-brands fa-twitter"></i></a></li>
+                }
+                @if (googleVisible == "True")
+                {
+                    <li><a href="@site.Value("googlUrl")"><i class="fa-brands fa-google"></i></a></li>
+                }
+                @if (linkedInVisible == "True")
+                {
+                    <li><a href="@site.Value("linkedInkUrl")"><i class="fa-brands fa-linkedin"></i></a></li>
+                }
+                </ul>
+            </div>            
+    </div>
+    <div class="copyright">
+        © 2023 Fixxo. All Rights Reserved.
+    </div>
+</footer>

@@ -177,7 +177,6 @@ a{
 .featured-products-container {
   display: flex;
   justify-content: center;
-  width: 70%;
   height: auto;
   display: flex;
   flex-wrap: wrap;
@@ -221,7 +220,12 @@ a{
 .card-button-container {
   opacity: 0;
   position: absolute;
-  bottom: 120px;
+  bottom: 100px;
+  transition: all 0.2s ease-in-out;
+}
+.card-button-container:hover{
+    opacity: 1;
+    bottom: 120px;
 }
 
 .card-side-icons {
@@ -252,6 +256,7 @@ a{
 }
 .card-content-background h1 {
   text-align: center;
+  font-size: 1rem;
 }
 .card-content-background .card-ratings {
   width: 100%;
@@ -260,7 +265,7 @@ a{
 }
 .card-content-background .card-ratings .card-ratings-container {
   text-align: center;
-  margin: 0.3em;
+ 
 }
 .card-content-background .card-ratings .card-ratings-container .card-ratings-icon {
   font-size: 1.15rem;
@@ -268,7 +273,7 @@ a{
 }
 .card-content-background .card-price {
   text-align: center;
-  font-size: 1.15rem;
+  font-size: 1rem;
   font-weight: 600;
 }
 .card-content-background .isOnSale {

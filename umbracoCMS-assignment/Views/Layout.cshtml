@@ -2,7 +2,10 @@
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
 @{
 	Layout = null;
-	ViewData["PageTitle"] = @Model.Value("setPageTitle");
+	if(Model.Name == "Site")
+    	ViewData["PageTitle"] = "Home";
+	
+	else ViewData["PageTitle"] = @Model.Value("setPageTitle");
 	
 }
 <!DOCTYPE html>

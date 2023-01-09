@@ -4,5 +4,9 @@
 @using Umbraco.Cms.Core.Models.PublishedContent;
 @{
 	Layout = "Layout.cshtml";
+	ViewData["PageTitle"] = "Home";
 }
 
+@await Html.PartialAsync("Header Section")
+
+@await Html.PartialAsync("Feature Section")
